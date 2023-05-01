@@ -9,20 +9,28 @@
         cursor: pointer;
         text-decoration: underline;
     }
+    .link_selected{
+        text-decoration: none;
+    }
+    .link_selected > a{
+        color: #ef4444;
+        text-decoration: none;
+    }
 </style>
 </head>
+
 <ul>
     @foreach($cities as $city)
-        <li>
-            <a href="/{{$city->slug}}">{{$city->name}}</a>
+        @php ($isSelectedCity = ($city->slug === $selected_city) )
+        <li
+            @if($isSelectedCity)
+                class="link_selected"
+            @endif >
+            <a href="/{{$city->slug}}">
+                {{$city->name}}
+            </a>
         </li>
     @endforeach
 </ul>
 
-
-<script>
-    $(document).ready(function(){
-
-    });
-</script>
 </html>
